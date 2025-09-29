@@ -13,16 +13,18 @@
             string allTheMessages = "";
             bool quit = false;
 
-            Console.WriteLine("Type Data You Want Stored. Press Q to Show All Data");
+            Console.WriteLine("Type Data You Want Stored.");
             do
             {
+                Console.WriteLine("Press Q to Quit, M to Show Messages, or C to Clear Messages");
+
                 userMessages = Console.ReadLine();
                 if (userMessages == "q" || userMessages == "Q")
                 {
-                    
                     quit = true;
                 }
 
+                //displays data when m is typed
                 else if (userMessages == "m"|| userMessages == "M")
                 {
                     Console.Clear();
@@ -30,6 +32,7 @@
                     Console.WriteLine(allTheMessages);
                 }
 
+                //runs program when data is input
                 else
                 {
                     allTheMessages = Messages(userMessages);
@@ -38,6 +41,7 @@
             } while (quit == false);
 
             //pause
+            Console.Clear();
             Console.WriteLine("Press Enter to Quit");
             Console.Read();
         }
@@ -46,7 +50,9 @@
 
         static string Messages(string userMessages)
         {
+            //trims message
             userMessages = userMessages.Trim();
+            
             //grabs global
             string messages = _messages;
 
@@ -58,14 +64,19 @@
             //skips a blank input
             else if (userMessages != "")
             {
-                //append the current message
-                messages += "\n" + userMessages;
-            }
+                //empties string when c is typed
+                if (userMessages == "c" || userMessages == "C")
+                {
+                    messages = string.Empty;
+                    messages = "";
+                }
 
-            //clears data if c is typed
-            else if (userMessages == "c" || userMessages == "C" )
-            {
-                messages = "";
+                else
+                {
+                    //append the current message
+                    messages += "\n" + userMessages;                    
+                }
+
             }
 
             //stores the updated data
